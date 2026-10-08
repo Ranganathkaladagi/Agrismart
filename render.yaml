@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: agrismart
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn --chdir backend app:app --workers=2 --bind=0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: OWM_API_KEY
+        value: "80a09e21dad3d9284a10a028a31171bf"
+      - key: FLASK_ENV
+        value: "production"
+
